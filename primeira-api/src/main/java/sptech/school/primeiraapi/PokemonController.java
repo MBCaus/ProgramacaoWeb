@@ -39,4 +39,26 @@ public class PokemonController {
         }
     }
 
+    @GetMapping("/excluir/{indice}")
+    public String excluirPokemoin(@PathVariable int indice){
+
+        if(indice >= lista.size()){
+            return "Nenhum Pokemon encontrado";
+        }else{
+            lista.remove(indice);
+            return "Pokemon exluido";
+        }
+
+    }
+
+    @GetMapping("/atualizar/{indice}/{novoNome}")
+    public String atualizarPokemon(@PathVariable int indice, @PathVariable String novoNome){
+        if(indice >= lista.size()){
+            return "Nenhum Pokemon encontrado";
+        }else{
+            //Fazer atualizar!
+            lista.set(indice, novoNome);
+            return "Pokemon renomeado";
+        }
+    }
 }
