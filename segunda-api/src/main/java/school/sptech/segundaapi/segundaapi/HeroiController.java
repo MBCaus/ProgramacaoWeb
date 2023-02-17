@@ -36,7 +36,7 @@ public class HeroiController {
     }
 
     @GetMapping("/atualizar/{indice}/{nome}/{habilidade}/{idade}/{forca}/{vivo}")
-    public String atuaçlizarHeroi(@PathVariable, int indice, @PathVariable String nome, @PathVariable String habilidade, @PathVariable int idade, @PathVariable double forca, @PathVariable Boolean vivo){
+    public String atuaçlizarHeroi(@PathVariable int indice, @PathVariable String nome, @PathVariable String habilidade, @PathVariable int idade, @PathVariable double forca, @PathVariable Boolean vivo){
         if(indice < 0 || indice > herois.size()){
             return "Indice Invalido";
         }else{
@@ -56,14 +56,15 @@ public class HeroiController {
     }
 
     @GetMapping("/consulta/{nome}")
-    public Heroi consultarHeroi(@PathVariable String nome){
+    public List<Heroi> consultarHeroi(@PathVariable String nome){
         List<Heroi> heroisFiltrados = new ArrayList();
 
         for (Heroi heroi : herois) {
             if(heroi.getNome().contains(nome)){
-                heroisFiltrados.add(nome);
+                heroisFiltrados.add(heroi);
             }
         }
 
+        return heroisFiltrados;
     }
 }
